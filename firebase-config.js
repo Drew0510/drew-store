@@ -1,10 +1,8 @@
-// Firebase Web Config không phải mật khẩu. Thay các giá trị bên dưới bằng config của dự án Firebase.
-// KHÔNG đặt ZaloPay key, Firebase Admin private key hoặc thông tin acc Minecraft trong file này.
 export const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_FIREBASE_APP_ID"
+  apiKey: "AIzaSyA7YvOjIOk-TXZGKihGEt0nVLon546PQj0",
+  authDomain: "drew-store.firebaseapp.com",
+  projectId: "drew-store",
+  storageBucket: "drew-store.firebasestorage.app",
+  messagingSenderId: "850749973359",
+  appId: "1:850749973359:web:cebe4fe7b1db345b713e9a"
 };
