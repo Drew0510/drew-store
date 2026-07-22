@@ -591,6 +591,124 @@
       }
     }
 
+    /* ===== GIAI ĐOẠN 2: CỬA HÀNG + ĐĂNG NHẬP ===== */
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .login-btn,.user-btn{
+      min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:13px;
+      color:#fff;background:rgba(255,255,255,.045);font:inherit;font-weight:800;
+      cursor:pointer;transition:.2s ease
+    }
+    .login-btn:hover,.user-btn:hover{transform:translateY(-2px);border-color:rgba(128,93,255,.55)}
+    .user-btn{display:none;align-items:center;gap:9px}
+    .user-avatar{width:27px;height:27px;border-radius:50%;object-fit:cover;background:#151a2d}
+    .service-link{display:block;cursor:pointer;color:inherit}
+    .service-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:21px}
+
+    .shop-toolbar{
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      margin-bottom:24px
+    }
+    .shop-count{color:var(--muted);font-weight:700}
+    .products{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px
+    }
+    .product{
+      position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;
+      background:var(--card);transition:.25s ease
+    }
+    .product:hover{transform:translateY(-7px);border-color:rgba(128,93,255,.48)}
+    .product-cover{
+      min-height:170px;display:grid;place-items:center;
+      background:
+        radial-gradient(circle at 50% 35%,rgba(77,220,255,.18),transparent 36%),
+        linear-gradient(145deg,rgba(128,93,255,.24),rgba(8,13,27,.92));
+      font-size:4.4rem
+    }
+    .product-body{padding:22px}
+    .product-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .product h3{font-size:1.05rem;line-height:1.45}
+    .status{
+      flex:0 0 auto;padding:7px 10px;border-radius:999px;font-size:.75rem;font-weight:900
+    }
+    .status.available{color:#9dffd0;background:rgba(53,210,134,.12);border:1px solid rgba(53,210,134,.25)}
+    .status.sold{color:#ffc2cb;background:rgba(255,82,111,.11);border:1px solid rgba(255,82,111,.23)}
+    .product-meta{display:grid;gap:8px;margin:17px 0;color:var(--muted);font-size:.88rem}
+    .product-price{font-family:"Orbitron",sans-serif;font-size:1.24rem;color:#fff}
+    .buy-btn{
+      width:100%;min-height:48px;border:0;border-radius:13px;color:#fff;
+      background:linear-gradient(135deg,var(--purple),#6544e8);font:inherit;font-weight:900;
+      cursor:pointer;transition:.2s ease
+    }
+    .buy-btn:hover{transform:translateY(-2px)}
+    .buy-btn:disabled{cursor:not-allowed;opacity:.42;transform:none}
+    .empty-note{
+      padding:24px;border:1px dashed rgba(255,255,255,.16);border-radius:18px;
+      color:var(--muted);text-align:center
+    }
+
+    .orders-grid,.log-list{display:grid;gap:15px}
+    .order-card,.log-item{
+      padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--card)
+    }
+    .order-head,.log-head{display:flex;justify-content:space-between;gap:16px;align-items:center}
+    .order-card p,.log-item p{margin-top:8px;color:var(--muted);font-size:.9rem;line-height:1.6}
+    .verified-log{color:#78e8ff;font-size:.78rem;font-weight:900}
+
+    .modal{
+      position:fixed;inset:0;z-index:500;display:none;place-items:center;padding:18px;
+      background:rgba(2,4,12,.78);backdrop-filter:blur(10px)
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(100%,480px);max-height:92vh;overflow:auto;padding:26px;
+      border:1px solid rgba(255,255,255,.14);border-radius:24px;background:#0d1325;
+      box-shadow:0 30px 90px rgba(0,0,0,.55)
+    }
+    .modal-head{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .modal-close{
+      width:38px;height:38px;border:1px solid var(--line);border-radius:11px;
+      color:#fff;background:rgba(255,255,255,.04);font-size:1.15rem;cursor:pointer
+    }
+    .modal-desc{margin:12px 0 20px;color:var(--muted);line-height:1.65}
+    .google-btn{
+      width:100%;min-height:52px;border:1px solid var(--line);border-radius:14px;
+      color:#fff;background:#fff0;font:inherit;font-weight:900;cursor:pointer
+    }
+    .field{display:grid;gap:8px;margin-top:16px}
+    .field label{font-size:.86rem;font-weight:800}
+    .field input{
+      width:100%;min-height:48px;padding:0 14px;border:1px solid var(--line);
+      border-radius:13px;color:#fff;background:rgba(255,255,255,.045);font:inherit;outline:none
+    }
+    .field input:focus{border-color:rgba(128,93,255,.7)}
+    .helper{margin-top:8px;color:var(--muted);font-size:.8rem;line-height:1.5}
+    .modal-actions{display:flex;gap:10px;margin-top:22px}
+    .modal-actions button{flex:1}
+    .secondary-action{
+      min-height:48px;border:1px solid var(--line);border-radius:13px;color:#fff;
+      background:rgba(255,255,255,.04);font:inherit;font-weight:900;cursor:pointer
+    }
+    .qr-placeholder{
+      min-height:220px;display:grid;place-items:center;margin:16px 0;border:1px dashed rgba(255,255,255,.18);
+      border-radius:18px;background:rgba(255,255,255,.025);text-align:center;color:var(--muted);padding:24px
+    }
+    .notice{
+      margin-top:16px;padding:14px;border:1px solid rgba(255,189,37,.24);border-radius:13px;
+      color:#ffe5a0;background:rgba(255,189,37,.08);font-size:.84rem;line-height:1.55
+    }
+
+    @media(max-width:960px){.products{grid-template-columns:1fr 1fr}}
+    @media(max-width:860px){
+      .nav-actions .nav-btn{display:none}
+      .login-btn,.user-btn{padding:0 12px}
+    }
+    @media(max-width:620px){
+      .products{grid-template-columns:1fr}
+      .shop-toolbar{align-items:flex-start;flex-direction:column}
+      .login-btn span,.user-btn .user-name{display:none}
+      .modal-actions{flex-direction:column}
+    }
+
   </style>
 </head>
 
@@ -609,12 +727,21 @@
       <div class="nav-links" id="navLinks">
         <a href="#home">Trang chủ</a>
         <a href="#services">Dịch vụ</a>
+        <a href="accounts.html">Tài khoản game</a>
+        <a href="#transaction-log">Log giao dịch</a>
         <a href="#about">Giới thiệu</a>
         <a href="#contact">Liên hệ</a>
       </div>
 
-      <a class="nav-btn" href="https://discord.gg/drewstore" target="_blank" rel="noopener">Tham gia Discord</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+      <div class="nav-actions">
+        <button class="login-btn" id="loginBtn" type="button">🔐 <span>Đăng nhập Google</span></button>
+        <button class="user-btn" id="userBtn" type="button">
+          <img class="user-avatar" id="userAvatar" alt="">
+          <span class="user-name" id="userName">Tài khoản</span>
+        </button>
+        <a class="nav-btn" href="https://discord.gg/drewstore" target="_blank" rel="noopener">Discord</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+      </div>
     </div>
   </nav>
 
@@ -631,7 +758,7 @@
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>699+</strong><span>Khách hàng</span></div>
+          <div class="stat"><strong>500+</strong><span>Khách hàng</span></div>
           <div class="stat"><strong>1.000+</strong><span>Giao dịch</span></div>
           <div class="stat"><strong>24/7</strong><span>Hỗ trợ</span></div>
         </div>
@@ -649,7 +776,7 @@
               <h2>Drew Store</h2>
               <span class="verified">✓</span>
             </div>
-            <p>Drew Store • Acconut Premium Minecraft  • Trusted Seller</p>
+            <p>Gaming Store • Minecraft Services • Trusted Seller</p>
           </div>
         </article>
       </div>
@@ -664,12 +791,46 @@
         </div>
 
         <div class="services">
-          <article class="service reveal"><div class="service-icon">💎</div><h3>Vật phẩm Minecraft</h3><p>Mua bán vật phẩm, money , spawner trong server với quy trình nhanh chóng.</p></article>
+          <article class="service reveal"><div class="service-icon">💎</div><h3>Vật phẩm Minecraft</h3><p>Mua bán vật phẩm, tiền tệ và tài nguyên trong server với quy trình nhanh chóng.</p></article>
           <article class="service reveal"><div class="service-icon">⚡</div><h3>Giao dịch tự động</h3><p>Hệ thống xử lý đơn hàng thuận tiện, giúp khách hàng nhận sản phẩm nhanh hơn.</p></article>
           <article class="service reveal"><div class="service-icon">🛡️</div><h3>An toàn và uy tín</h3><p>Thông tin rõ ràng, hỗ trợ minh bạch và luôn ưu tiên quyền lợi của khách hàng.</p></article>
-          <article class="service reveal"><div class="service-icon">🎮</div><h3>Tài khoản Game</h3><p>Cung cấp tài khoản premium minecraft giá rẻ.</p></article>
+          <a class="service service-link reveal" href="accounts.html"><div class="service-icon">🎮</div><h3>Tài khoản Game</h3><p>Bấm vào đây để xem danh sách tài khoản Minecraft Premium đang được mở bán.</p></a>
           <article class="service reveal"><div class="service-icon">🤖</div><h3>Discord Bot</h3><p>Thiết kế bot quản lý, bán hàng và hỗ trợ cộng đồng Discord cho server của bạn.</p></article>
           <article class="service reveal"><div class="service-icon">💬</div><h3>Hỗ trợ 24/7</h3><p>Giải đáp thắc mắc, xử lý đơn hàng và hỗ trợ sự cố nhanh chóng qua Discord.</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="my-orders">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Khu vực riêng tư</span>
+          <h2 class="section-title">Đơn hàng của tôi</h2>
+          <p class="section-desc">Đăng nhập Google để xem các sản phẩm đã mua. Mật khẩu, email bảo mật, Secret Key và Recovery Code không bao giờ hiển thị công khai.</p>
+        </div>
+        <div class="orders-grid reveal" id="ordersGrid">
+          <div class="empty-note">Bạn chưa đăng nhập hoặc chưa có đơn hàng.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="transaction-log">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Minh bạch giao dịch</span>
+          <h2 class="section-title">Log mua hàng gần đây</h2>
+          <p class="section-desc">Log công khai chỉ hiển thị nickname, tên sản phẩm và trạng thái đã xác minh. Gmail và thông tin tài khoản game luôn được ẩn.</p>
+        </div>
+        <div class="log-list reveal" id="publicLog">
+          <article class="log-item">
+            <div class="log-head"><strong>MinhCraft đã mua Minecraft Premium #003</strong><span class="verified-log">✓ ĐÃ XÁC MINH</span></div>
+            <p>300.000đ • Đã thanh toán và giao tài khoản • 21/07/2026 20:35</p>
+          </article>
+          <article class="log-item">
+            <div class="log-head"><strong>PlayerVN đã mua Minecraft Premium #010</strong><span class="verified-log">✓ ĐÃ XÁC MINH</span></div>
+            <p>420.000đ • Đã thanh toán và giao tài khoản • 20/07/2026 15:12</p>
+          </article>
         </div>
       </div>
     </section>
@@ -688,9 +849,9 @@
         </article>
 
         <div class="panel reviews reveal">
-          <article class="review"><div class="review-top"><strong>Hỗ trợ</strong><span class="stars">★★★★★</span></div><p>Drew Store hỗ trợ rất nhanh, giao dịch gọn.</p></article>
-          <article class="review"><div class="review-top"><strong>700+ Vouch</strong><span class="stars">★★★★★</span></div><p>700+ Vouch,Legit Check in Discord Drew Store.</p></article>
-          <article class="review"><div class="review-top"><strong>Trò chuyện</strong><span class="stars">★★★★★</span></div><p>Mọi người trò chuyện vui vẻ , xây farm kiếm tiền từ DonutSMP.</p></article>
+          <article class="review"><div class="review-top"><strong>Khách hàng #01</strong><span class="stars">★★★★★</span></div><p>Shop hỗ trợ rất nhanh, giao dịch gọn và sản phẩm đúng như mô tả.</p></article>
+          <article class="review"><div class="review-top"><strong>Khách hàng #02</strong><span class="stars">★★★★★</span></div><p>Mình đã mua nhiều lần và luôn nhận được hỗ trợ nhiệt tình từ Drew Store.</p></article>
+          <article class="review"><div class="review-top"><strong>Khách hàng #03</strong><span class="stars">★★★★★</span></div><p>Website đẹp, thao tác dễ và tốc độ xử lý đơn hàng rất ổn.</p></article>
         </div>
       </div>
     </section>
@@ -715,6 +876,67 @@
       <p>Made for Drew Store</p>
     </div>
   </footer>
+
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="loginTitle">Đăng nhập Drew Store</h2>
+        <button class="modal-close" type="button" data-close-modal>✕</button>
+      </div>
+      <p class="modal-desc">Đăng nhập Google để mua hàng, đặt nickname và xem đơn hàng của bạn.</p>
+      <button class="google-btn" id="googleLoginBtn" type="button">G&nbsp; Đăng nhập bằng Google</button>
+      <div class="notice">Bản này đã hoàn thiện giao diện và luồng thử nghiệm. Đăng nhập Google thật sẽ hoạt động sau khi thêm Firebase Config.</div>
+    </div>
+  </div>
+
+  <div class="modal" id="nicknameModal" role="dialog" aria-modal="true" aria-labelledby="nicknameTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="nicknameTitle">Đặt tên hiển thị</h2>
+      </div>
+      <p class="modal-desc">Tên này sẽ xuất hiện trong log mua hàng công khai thay cho Gmail.</p>
+      <div class="field">
+        <label for="nicknameInput">Nickname</label>
+        <input id="nicknameInput" maxlength="20" placeholder="Ví dụ: DrewVN">
+      </div>
+      <p class="helper">Từ 3–20 ký tự; chỉ dùng chữ, số và dấu gạch dưới.</p>
+      <div class="modal-actions">
+        <button class="buy-btn" id="saveNicknameBtn" type="button">Lưu nickname</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="paymentTitle">Thanh toán ZaloPay</h2>
+        <button class="modal-close" type="button" data-close-modal>✕</button>
+      </div>
+      <p class="modal-desc" id="paymentProduct">Sản phẩm</p>
+      <div class="qr-placeholder">
+        <div>
+          <div style="font-size:3rem;margin-bottom:10px">▦</div>
+          <strong>QR ZaloPay sẽ xuất hiện tại đây</strong>
+          <p style="margin-top:8px">Cần kết nối backend và tài khoản ZaloPay Merchant để tạo QR thật.</p>
+        </div>
+      </div>
+      <div class="notice">Website sẽ không tự giao tài khoản dựa trên nút bấm. Chỉ callback đã xác minh từ ZaloPay mới được phép đánh dấu đơn là đã thanh toán.</div>
+    </div>
+  </div>
+
+  <div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="profileTitle">Tài khoản của bạn</h2>
+        <button class="modal-close" type="button" data-close-modal>✕</button>
+      </div>
+      <p class="modal-desc" id="profileText"></p>
+      <div class="modal-actions">
+        <a class="btn btn-secondary" href="#my-orders" data-close-modal>Xem đơn hàng</a>
+        <button class="secondary-action" id="logoutBtn" type="button">Đăng xuất</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     const nav = document.getElementById("nav");
@@ -794,6 +1016,94 @@
           window.innerWidth > 860 ? "perspective(950px) rotateX(0deg) rotateY(0deg) rotate(1deg)" : "none";
       });
     }
+
+    // ===== GIAI ĐOẠN 2: LUỒNG CỬA HÀNG (DEMO FRONTEND) =====
+    const loginBtn = document.getElementById("loginBtn");
+    const userBtn = document.getElementById("userBtn");
+    const userName = document.getElementById("userName");
+    const userAvatar = document.getElementById("userAvatar");
+    const loginModal = document.getElementById("loginModal");
+    const nicknameModal = document.getElementById("nicknameModal");
+    const paymentModal = document.getElementById("paymentModal");
+    const profileModal = document.getElementById("profileModal");
+    const googleLoginBtn = document.getElementById("googleLoginBtn");
+    const nicknameInput = document.getElementById("nicknameInput");
+    const saveNicknameBtn = document.getElementById("saveNicknameBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const profileText = document.getElementById("profileText");
+    const paymentProduct = document.getElementById("paymentProduct");
+
+    let currentUser = null;
+
+    function openModal(modal){ modal.classList.add("open"); }
+    function closeModal(modal){ modal.classList.remove("open"); }
+
+    document.querySelectorAll("[data-close-modal]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".modal.open").forEach(closeModal);
+      });
+    });
+
+    document.querySelectorAll(".modal").forEach(modal => {
+      modal.addEventListener("click", event => {
+        if(event.target === modal) closeModal(modal);
+      });
+    });
+
+    loginBtn.addEventListener("click", () => openModal(loginModal));
+
+    // Tài khoản demo giúp kiểm tra giao diện trước khi gắn Firebase.
+    googleLoginBtn.addEventListener("click", () => {
+      closeModal(loginModal);
+      currentUser = {
+        uid: "demo-user",
+        email: "demo@gmail.com",
+        photoURL: "logo.png",
+        nickname: ""
+      };
+      openModal(nicknameModal);
+      nicknameInput.focus();
+    });
+
+    saveNicknameBtn.addEventListener("click", () => {
+      const nickname = nicknameInput.value.trim();
+      if(!/^[A-Za-z0-9_]{3,20}$/.test(nickname)){
+        alert("Nickname phải có 3–20 ký tự và chỉ gồm chữ, số hoặc dấu _.");
+        return;
+      }
+      currentUser.nickname = nickname;
+      userName.textContent = nickname;
+      userAvatar.src = currentUser.photoURL;
+      loginBtn.style.display = "none";
+      userBtn.style.display = "inline-flex";
+      closeModal(nicknameModal);
+    });
+
+    userBtn.addEventListener("click", () => {
+      profileText.textContent = `Nickname: ${currentUser.nickname} • Gmail được bảo mật`;
+      openModal(profileModal);
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      currentUser = null;
+      userBtn.style.display = "none";
+      loginBtn.style.display = "inline-flex";
+      closeModal(profileModal);
+    });
+
+    document.querySelectorAll(".buy-btn:not(:disabled)").forEach(button => {
+      button.addEventListener("click", () => {
+        if(!currentUser){
+          openModal(loginModal);
+          return;
+        }
+        const product = button.closest(".product");
+        const name = product.dataset.productName;
+        const price = Number(product.dataset.price).toLocaleString("vi-VN");
+        paymentProduct.textContent = `${name} • ${price}đ`;
+        openModal(paymentModal);
+      });
+    });
 
   </script>
 </body>
