@@ -709,7 +709,9 @@
       .modal-actions{flex-direction:column}
     }
 
-  </style>
+  
+    .auth-actions{display:flex;align-items:center;gap:10px}.login-btn,.user-btn{height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;color:#fff;background:var(--card);font-weight:800;cursor:pointer}.user-btn{display:none}.user-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:7px}.auth-modal{display:none;position:fixed;inset:0;z-index:1000;place-items:center;padding:20px;background:rgba(2,4,12,.78);backdrop-filter:blur(12px)}.auth-modal.open{display:grid}.auth-card{width:min(460px,100%);padding:26px;border:1px solid var(--line);border-radius:22px;background:#10172a;box-shadow:var(--shadow)}.auth-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.auth-close{border:0;background:transparent;color:#fff;font-size:1.2rem;cursor:pointer}.google-btn{width:100%;margin-top:20px;padding:14px;border:0;border-radius:13px;font-weight:800;cursor:pointer}.field{margin-top:16px}.field input{width:100%;margin-top:8px;padding:13px;border:1px solid var(--line);border-radius:12px;color:#fff;background:#080d1a}.modal-actions{display:flex;gap:10px;margin-top:18px}.secondary-action{padding:12px 16px;border:1px solid var(--line);border-radius:12px;color:#fff;background:transparent;cursor:pointer}@media(max-width:760px){.user-name,.login-btn span{display:none}}
+</style>
 
   <style>
     .account-page{padding:145px 0 90px;min-height:100vh}
@@ -768,7 +770,9 @@
       .account-grid{grid-template-columns:1fr}
       .account-summary{align-items:flex-start;flex-direction:column}
     }
-  </style>
+  
+    .auth-actions{display:flex;align-items:center;gap:10px}.login-btn,.user-btn{height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;color:#fff;background:var(--card);font-weight:800;cursor:pointer}.user-btn{display:none}.user-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:7px}.auth-modal{display:none;position:fixed;inset:0;z-index:1000;place-items:center;padding:20px;background:rgba(2,4,12,.78);backdrop-filter:blur(12px)}.auth-modal.open{display:grid}.auth-card{width:min(460px,100%);padding:26px;border:1px solid var(--line);border-radius:22px;background:#10172a;box-shadow:var(--shadow)}.auth-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.auth-close{border:0;background:transparent;color:#fff;font-size:1.2rem;cursor:pointer}.google-btn{width:100%;margin-top:20px;padding:14px;border:0;border-radius:13px;font-weight:800;cursor:pointer}.field{margin-top:16px}.field input{width:100%;margin-top:8px;padding:13px;border:1px solid var(--line);border-radius:12px;color:#fff;background:#080d1a}.modal-actions{display:flex;gap:10px;margin-top:18px}.secondary-action{padding:12px 16px;border:1px solid var(--line);border-radius:12px;color:#fff;background:transparent;cursor:pointer}@media(max-width:760px){.user-name,.login-btn span{display:none}}
+</style>
 
 </head>
 <body>
@@ -790,7 +794,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a class="nav-btn" href="https://discord.gg/drewstore" target="_blank" rel="noopener">Discord</a>
+        <div class="auth-actions"><button class="login-btn" id="loginBtn" type="button">🔐 <span>Đăng nhập Google</span></button><button class="user-btn" id="userBtn" type="button"><img class="user-avatar" id="userAvatar" alt=""><span class="user-name" id="userName">Tài khoản</span></button><a class="nav-btn" href="https://discord.gg/drewstore" target="_blank" rel="noopener">Discord</a></div>
         <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
       </div>
     </div>
@@ -932,6 +936,10 @@
     </div>
   </main>
 
+  <div class="auth-modal" id="loginModal"><div class="auth-card"><div class="auth-head"><h2>Đăng nhập Drew Store</h2><button class="auth-close" type="button" data-close-modal>✕</button></div><p class="modal-desc">Chọn tài khoản Gmail bằng cửa sổ Google chính thức.</p><button class="google-btn" id="googleLoginBtn" type="button">G&nbsp; Đăng nhập bằng Google</button></div></div>
+  <div class="auth-modal" id="nicknameModal"><div class="auth-card"><div class="auth-head"><h2>Đặt nickname lần đầu</h2></div><p class="modal-desc">Nickname công khai thay cho Gmail.</p><div class="field"><label for="nicknameInput">Nickname</label><input id="nicknameInput" maxlength="20" placeholder="Ví dụ: DrewVN"></div><div class="modal-actions"><button class="buy-btn" id="saveNicknameBtn" type="button">Lưu nickname</button></div></div></div>
+  <div class="auth-modal" id="profileModal"><div class="auth-card"><div class="auth-head"><h2>Tài khoản của bạn</h2><button class="auth-close" type="button" data-close-modal>✕</button></div><p class="modal-desc" id="profileText"></p><div class="modal-actions"><button class="secondary-action" id="logoutBtn" type="button">Đăng xuất</button></div></div></div>
+
   <div class="modal" id="paymentModal" role="dialog" aria-modal="true">
     <div class="modal-card">
       <div class="modal-head">
@@ -993,6 +1001,7 @@
     const paymentProduct = document.getElementById("paymentProduct");
     document.querySelectorAll(".buy-btn:not(:disabled)").forEach(button => {
       button.addEventListener("click", () => {
+        if (!window.requireDrewLogin?.()) return;
         paymentProduct.textContent = `${button.dataset.name} • ${button.dataset.price}`;
         paymentModal.classList.add("open");
       });
@@ -1015,6 +1024,8 @@
       glow.style.left = event.clientX + "px";
       glow.style.top = event.clientY + "px";
     });
+    document.querySelectorAll("[data-close-modal]").forEach(btn => btn.addEventListener("click", () => btn.closest(".auth-modal")?.classList.remove("open")));
   </script>
+  <script type="module" src="firebase-auth.js"></script>
 </body>
 </html>
