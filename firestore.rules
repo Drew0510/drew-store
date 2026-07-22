@@ -6,30 +6,27 @@ service cloud.firestore {
 
     match /users/{uid} {
       allow read: if owner(uid);
-      allow create, update: if owner(uid)
+      allow create: if owner(uid)
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.email == request.auth.token.email;
+        && request.resource.data.role == "user";
+      allow update: if owner(uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role;
       allow delete: if false;
     }
 
-    match /nicknames/{nickname} {
-      allow read: if signedIn();
-      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
-      allow update: if signedIn()
-        && resource.data.uid == request.auth.uid
-        && request.resource.data.uid == request.auth.uid;
-      allow delete: if false;
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if false;
     }
 
-    // Sản phẩm công khai chỉ chứa mô tả, giá và trạng thái — không chứa credential.
-    match /products/{productId} { allow read: if true; allow write: if false; }
-
-    // Người mua chỉ đọc đơn của chính mình. Tạo/cập nhật đơn phải do backend Admin SDK thực hiện.
     match /orders/{orderId} {
       allow read: if signedIn() && resource.data.buyerUid == request.auth.uid;
       allow write: if false;
     }
 
-    match /{document=**} { allow read, write: if false; }
+    match /{document=**} {
+      allow read, write: if false;
+    }
   }
 }
