@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+
+    match /users/{uid} {
+      allow read: if owner(uid);
+      allow create, update: if owner(uid)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email;
+      allow delete: if false;
+    }
+
+    match /nicknames/{nickname} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if false;
+    }
+
+    // Sản phẩm công khai chỉ chứa mô tả, giá và trạng thái — không chứa credential.
+    match /products/{productId} { allow read: if true; allow write: if false; }
+
+    // Người mua chỉ đọc đơn của chính mình. Tạo/cập nhật đơn phải do backend Admin SDK thực hiện.
+    match /orders/{orderId} {
+      allow read: if signedIn() && resource.data.buyerUid == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
