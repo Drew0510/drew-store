@@ -1,0 +1,82 @@
+:root{
+  color-scheme:dark;
+  --bg:#070910;--surface:#121624;--surface2:#191f30;
+  --text:#f7f8ff;--muted:#aab0c0;--accent:#7657ff;
+  --accent2:#947dff;--border:rgba(255,255,255,.1);
+  --danger:#ff7384;--success:#52d58e
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(118,87,255,.20),transparent 34rem),
+    var(--bg)
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.site-header{
+  position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:1rem clamp(1rem,5vw,5rem);
+  border-bottom:1px solid var(--border);background:rgba(7,9,16,.84);backdrop-filter:blur(14px)
+}
+.brand{font-weight:900;letter-spacing:.09em}
+.site-nav{display:flex;align-items:center;gap:1.1rem;color:var(--muted)}
+.site-nav a:hover{color:var(--text)}
+.link-button{border:0;background:transparent;color:var(--muted)}
+.container{width:min(1100px,calc(100% - 2rem));margin:auto}
+.hero{min-height:60vh;display:grid;align-items:center;padding:5rem 0}
+.eyebrow{color:#aa99ff;font-size:.8rem;font-weight:900;letter-spacing:.16em}
+h1{font-size:clamp(3rem,8vw,6.5rem);line-height:.95;margin:.45rem 0 1rem}
+h2{font-size:clamp(2rem,4vw,3rem)}
+.muted,.hero p,.product-card p{color:var(--muted);line-height:1.7}
+.section{padding:4rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.card,.product-card,.auth-card,.panel,.order-card{
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+  box-shadow:0 22px 70px rgba(0,0,0,.28)
+}
+.card,.product-card,.panel{padding:1.5rem;border-radius:18px}
+.product-icon{font-size:2rem}
+.product-meta{display:flex;justify-content:space-between;align-items:center;margin:1rem 0}
+.primary-button,.secondary-button,.danger-button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  padding:.8rem 1.1rem;border-radius:12px;font-weight:850;border:0
+}
+.primary-button{background:var(--accent);color:#fff}
+.primary-button:hover{background:var(--accent2)}
+.secondary-button{background:transparent;color:var(--text);border:1px solid var(--border)}
+.danger-button{background:var(--danger);color:#fff}
+.auth-wrap{min-height:calc(100vh - 74px);display:grid;place-items:center;padding:2rem}
+.auth-card{width:min(460px,100%);padding:2rem;border-radius:24px}
+.center{text-align:center}
+.message{min-height:1.4rem;text-align:center}
+.message.error{color:var(--danger)}
+.message.success{color:var(--success)}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.45rem;color:var(--muted);font-weight:750}
+input,textarea{
+  width:100%;padding:.9rem;border-radius:12px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--text);outline:none
+}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(118,87,255,.2)}
+.switch{text-align:center;color:var(--muted)}
+.text-button{border:0;background:transparent;color:#aa99ff;font-weight:850}
+.profile-card{display:grid;grid-template-columns:120px 1fr;gap:1.5rem;align-items:center}
+.avatar{width:100px;height:100px;display:grid;place-items:center;border-radius:50%;font-size:3rem;background:rgba(118,87,255,.18)}
+.order-card{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;border-radius:14px;margin-bottom:.8rem}
+table{width:100%;border-collapse:collapse}
+th,td{padding:.8rem;border-bottom:1px solid var(--border);text-align:left}
+footer{padding:2rem;text-align:center;color:var(--muted);border-top:1px solid var(--border)}
+@media(max-width:850px){
+  .product-grid,.grid{grid-template-columns:1fr}
+  .site-nav a:not([data-account-link]):not([data-admin-link]){display:none}
+  .profile-card{grid-template-columns:1fr;text-align:center}
+  .avatar{margin:auto}
+  table{display:block;overflow-x:auto}
+}
