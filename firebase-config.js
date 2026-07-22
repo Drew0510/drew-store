@@ -1,3 +1,5 @@
+// Firebase Web Config của dự án Drew Store.
+// Đây là cấu hình frontend công khai, không phải mật khẩu hay Firebase Admin private key.
 export const firebaseConfig = {
   apiKey: "AIzaSyA7YvOjIOk-TXZGKihGEt0nVLon546PQj0",
   authDomain: "drew-store.firebaseapp.com",
