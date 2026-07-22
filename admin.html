@@ -1,0 +1,44 @@
+<!doctype html><html lang="vi"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin - Drew Store</title><link rel="stylesheet" href="./css/style.css">
+</head><body>
+
+<header class="site-header">
+  <a class="brand" href="./index.html">DREW STORE</a>
+  <nav class="site-nav">
+    <a href="./index.html">Trang chủ</a>
+    <a href="./accounts.html">Sản phẩm</a>
+    <a data-admin-link href="./admin.html" hidden>Admin</a>
+    <a data-account-link href="./login.html">Đăng nhập</a>
+    <button data-logout class="link-button" hidden>Đăng xuất</button>
+  </nav>
+</header>
+
+<main id="admin-root" class="section container">
+  <span class="eyebrow">ADMIN</span><h2>Quản trị cửa hàng</h2>
+
+  <section class="panel">
+    <h3>Thêm sản phẩm</h3>
+    <form id="product-form">
+      <label>Tên sản phẩm<input name="name" required></label>
+      <label>Mô tả<textarea name="description"></textarea></label>
+      <label>Giá<input name="price" type="number" min="0" required></label>
+      <label>Tồn kho<input name="stock" type="number" min="0" required></label>
+      <button class="primary-button" type="submit">Thêm sản phẩm</button>
+    </form>
+  </section>
+
+  <section class="section">
+    <h3>Sản phẩm</h3>
+    <div class="panel"><table><thead><tr><th>Tên</th><th>Giá</th><th>Kho</th><th></th></tr></thead><tbody id="admin-products"></tbody></table></div>
+  </section>
+
+  <section class="section">
+    <h3>Đơn hàng</h3>
+    <div class="panel"><table><thead><tr><th>Khách</th><th>Sản phẩm</th><th>Giá</th><th>Trạng thái</th><th></th></tr></thead><tbody id="admin-orders"></tbody></table></div>
+  </section>
+</main>
+<footer>© 2026 Drew Store</footer>
+<script type="module">import { initHeader } from "./js/ui.js"; initHeader();</script>
+<script type="module" src="./js/admin.js"></script>
+</body></html>

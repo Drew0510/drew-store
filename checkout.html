@@ -1,0 +1,29 @@
+<!doctype html><html lang="vi"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thanh toán - Drew Store</title><link rel="stylesheet" href="./css/style.css">
+</head><body>
+
+<header class="site-header">
+  <a class="brand" href="./index.html">DREW STORE</a>
+  <nav class="site-nav">
+    <a href="./index.html">Trang chủ</a>
+    <a href="./accounts.html">Sản phẩm</a>
+    <a data-admin-link href="./admin.html" hidden>Admin</a>
+    <a data-account-link href="./login.html">Đăng nhập</a>
+    <button data-logout class="link-button" hidden>Đăng xuất</button>
+  </nav>
+</header>
+
+<main class="section container">
+  <section id="checkout-box" class="panel">
+    <span class="eyebrow">THANH TOÁN</span>
+    <h2 id="product-name">Đang tải...</h2>
+    <p class="muted">Giá: <strong id="product-price"></strong></p>
+    <p id="checkout-message" class="message"></p>
+    <button id="create-order" class="primary-button">Tạo đơn hàng</button>
+  </section>
+</main>
+<footer>© 2026 Drew Store</footer>
+<script type="module">import { initHeader } from "./js/ui.js"; initHeader();</script>
+<script type="module" src="./js/checkout.js"></script>
+</body></html>
