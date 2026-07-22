@@ -885,7 +885,7 @@
       </div>
       <p class="modal-desc">Đăng nhập Google để mua hàng, đặt nickname và xem đơn hàng của bạn.</p>
       <button class="google-btn" id="googleLoginBtn" type="button">G&nbsp; Đăng nhập bằng Google</button>
-      <div class="notice">Bản này đã hoàn thiện giao diện và luồng thử nghiệm. Đăng nhập Google thật sẽ hoạt động sau khi thêm Firebase Config.</div>
+      <div class="notice">Cửa sổ Google thật sẽ mở để bạn chọn Gmail. Lần đầu đăng nhập, hệ thống mới yêu cầu đặt nickname.</div>
     </div>
   </div>
 
@@ -1017,94 +1017,26 @@
       });
     }
 
-    // ===== GIAI ĐOẠN 2: LUỒNG CỬA HÀNG (DEMO FRONTEND) =====
-    const loginBtn = document.getElementById("loginBtn");
-    const userBtn = document.getElementById("userBtn");
-    const userName = document.getElementById("userName");
-    const userAvatar = document.getElementById("userAvatar");
-    const loginModal = document.getElementById("loginModal");
-    const nicknameModal = document.getElementById("nicknameModal");
-    const paymentModal = document.getElementById("paymentModal");
-    const profileModal = document.getElementById("profileModal");
-    const googleLoginBtn = document.getElementById("googleLoginBtn");
-    const nicknameInput = document.getElementById("nicknameInput");
-    const saveNicknameBtn = document.getElementById("saveNicknameBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const profileText = document.getElementById("profileText");
-    const paymentProduct = document.getElementById("paymentProduct");
-
-    let currentUser = null;
-
-    function openModal(modal){ modal.classList.add("open"); }
-    function closeModal(modal){ modal.classList.remove("open"); }
-
     document.querySelectorAll("[data-close-modal]").forEach(button => {
-      button.addEventListener("click", () => {
-        document.querySelectorAll(".modal.open").forEach(closeModal);
-      });
+      button.addEventListener("click", () => button.closest(".modal")?.classList.remove("open"));
     });
-
     document.querySelectorAll(".modal").forEach(modal => {
-      modal.addEventListener("click", event => {
-        if(event.target === modal) closeModal(modal);
-      });
+      modal.addEventListener("click", event => { if (event.target === modal) modal.classList.remove("open"); });
     });
 
-    loginBtn.addEventListener("click", () => openModal(loginModal));
-
-    // Tài khoản demo giúp kiểm tra giao diện trước khi gắn Firebase.
-    googleLoginBtn.addEventListener("click", () => {
-      closeModal(loginModal);
-      currentUser = {
-        uid: "demo-user",
-        email: "demo@gmail.com",
-        photoURL: "logo.png",
-        nickname: ""
-      };
-      openModal(nicknameModal);
-      nicknameInput.focus();
-    });
-
-    saveNicknameBtn.addEventListener("click", () => {
-      const nickname = nicknameInput.value.trim();
-      if(!/^[A-Za-z0-9_]{3,20}$/.test(nickname)){
-        alert("Nickname phải có 3–20 ký tự và chỉ gồm chữ, số hoặc dấu _.");
-        return;
-      }
-      currentUser.nickname = nickname;
-      userName.textContent = nickname;
-      userAvatar.src = currentUser.photoURL;
-      loginBtn.style.display = "none";
-      userBtn.style.display = "inline-flex";
-      closeModal(nicknameModal);
-    });
-
-    userBtn.addEventListener("click", () => {
-      profileText.textContent = `Nickname: ${currentUser.nickname} • Gmail được bảo mật`;
-      openModal(profileModal);
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      currentUser = null;
-      userBtn.style.display = "none";
-      loginBtn.style.display = "inline-flex";
-      closeModal(profileModal);
-    });
-
+    // Mua hàng: yêu cầu người dùng đã đăng nhập Google thật.
     document.querySelectorAll(".buy-btn:not(:disabled)").forEach(button => {
       button.addEventListener("click", () => {
-        if(!currentUser){
-          openModal(loginModal);
-          return;
-        }
+        if (!window.requireDrewLogin?.()) return;
         const product = button.closest(".product");
-        const name = product.dataset.productName;
-        const price = Number(product.dataset.price).toLocaleString("vi-VN");
-        paymentProduct.textContent = `${name} • ${price}đ`;
-        openModal(paymentModal);
+        const name = product?.dataset.productName || "Sản phẩm";
+        const price = Number(product?.dataset.price || 0).toLocaleString("vi-VN");
+        document.getElementById("paymentProduct").textContent = `${name} • ${price}đ`;
+        document.getElementById("paymentModal").classList.add("open");
       });
     });
 
   </script>
+  <script type="module" src="firebase-auth.js"></script>
 </body>
 </html>
